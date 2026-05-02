@@ -1,0 +1,37 @@
+# Expose the ai-bridge running on the control-plane host as an in-cluster
+# service. The bridge process itself runs on the host (systemd), not as a
+# pod — it needs to send WoL packets and manage SSH state, both of which
+# are simpler outside the cluster.
+#
+# The Endpoints object points back to the host IP. Sanitised here to
+# 192.168.X.X — replace with the actual control-plane IP on apply.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-bridge
+  namespace: default
+  labels:
+    app: ai-bridge
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ai-bridge
+  namespace: default
+  labels:
+    app: ai-bridge
+subsets:
+  - addresses:
+      - ip: 192.168.X.X   # control-plane host running the bridge
+    ports:
+      - name: http
+        port: 8080
+        protocol: TCP

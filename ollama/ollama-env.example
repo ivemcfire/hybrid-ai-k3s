@@ -1,0 +1,25 @@
+# Ollama environment for the Windows GPU box.
+#
+# Set these at the user/system level on Windows (System Environment
+# Variables) so they apply to the Ollama service. WSL2 is NOT used —
+# Ollama runs natively on Windows against the existing CUDA install.
+#
+# Why each one matters:
+
+# Unload the model from VRAM as soon as the response is done. Without this,
+# Ollama keeps the model resident, the GPU never drops power state, and the
+# WoL strategy quietly stops working. This is the single most important
+# setting for the sleeping-GPU pattern.
+OLLAMA_KEEP_ALIVE=0
+
+# Bind only to loopback. The cluster reaches Ollama via an SSH tunnel from
+# the bridge, so there is no reason for Ollama to listen on the LAN.
+OLLAMA_HOST=127.0.0.1:11434
+
+# Cap concurrent requests. The bridge is single-tenant for this homelab.
+# A 14B model at Q4 will not parallel well on a 12GB card anyway.
+OLLAMA_NUM_PARALLEL=1
+OLLAMA_MAX_LOADED_MODELS=1
+
+# Constrain the model directory if you do not want models on the OS drive.
+# OLLAMA_MODELS=D:\ollama-models

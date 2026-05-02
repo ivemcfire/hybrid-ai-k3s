@@ -1,0 +1,42 @@
+# ai-bridge configuration. Copy to config.yaml and edit before starting.
+# config.yaml is gitignored — keep it that way.
+
+bridge:
+  listen: "0.0.0.0:8080"
+  # Idle window before the bridge stops sending keep-alives and lets the
+  # Windows box go back to sleep. Manual override via /v1/keep-warm.
+  idle_seconds: 300
+
+windows_gpu:
+  # Hostname or IP of the Windows GPU box on the LAN.
+  host: "192.168.X.X"
+  # Wake-on-LAN MAC of the wired NIC on the Windows box. Wi-Fi NICs are
+  # unreliable for WoL — the post explains why.
+  mac: "AA:BB:CC:DD:EE:FF"
+  # Broadcast address for the magic packet. Usually your LAN broadcast.
+  broadcast: "192.168.X.255"
+  # How long to wait for SSH to come up after WoL before giving up.
+  wake_timeout_seconds: 30
+
+ssh:
+  user: "ollama"
+  # Path to the SSH key the bridge uses. Read-only on disk, no passphrase.
+  key_path: "/etc/ai-bridge/id_ed25519"
+  # Strict host-key checking. Do NOT disable. If the host key changes,
+  # investigate before updating known_hosts.
+  known_hosts: "/etc/ai-bridge/known_hosts"
+  # Local end of the tunnel that maps to Ollama on the Windows box.
+  local_port: 11434
+  remote_host: "127.0.0.1"
+  remote_port: 11434
+
+ollama:
+  # Default model. Bridge passes this through if the request does not name
+  # one explicitly.
+  model: "qwen2.5-coder:14b"
+
+logging:
+  # Bridge logs every request: timestamp, model, prompt hash, latency, and
+  # whether it was a cold or warm path. No prompt content.
+  level: "info"
+  format: "json"

@@ -1,0 +1,24 @@
+[Unit]
+Description=ai-bridge — local-first AI gateway with WoL + SSH to a sleeping GPU
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ai-bridge
+Group=ai-bridge
+ExecStart=/usr/bin/python3 /opt/ai-bridge/ai-bridge.py
+Restart=on-failure
+RestartSec=5
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/etc/ai-bridge
+ReadWritePaths=/var/log/ai-bridge
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_BROADCAST
+AmbientCapabilities=CAP_NET_BROADCAST
+
+[Install]
+WantedBy=multi-user.target
