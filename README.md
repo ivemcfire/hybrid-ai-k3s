@@ -4,7 +4,7 @@
 >
 > Default routing now: cloud Opus 4.7 + Sonnet 4.6 sub-agents (Anthropic Agent tool — `subagent_type=Explore` for read-only / `general-purpose` for write / `Plan` for design).
 >
-> Repo kept as historical reference. To revive local AI: see `eval/README.md` and the laptop-side `~/bin/ollama-tune-vram-cap.ps1` (run on .50 first), then opt in explicitly per-prompt.
+> **2026-05-11 update — hardware removed.** RTX 3060 pulled from `.50`, Ollama uninstalled. Box reverted to Windows daily-driver with GTX 1050Ti (4GB VRAM, insufficient for any useful coder model). Local AI not revivable on `.50`. To revive elsewhere: install Ollama on a host with ≥12GB VRAM, pull `qwen2.5-coder:14b` Q4_K_M (9GB), apply tuning from `eval/` companion + `~/bin/ollama-tune-vram-cap.ps1` (adapt for Linux if needed), update endpoint in consumers.
 
 ---
 
