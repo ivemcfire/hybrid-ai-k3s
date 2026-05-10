@@ -1,0 +1,17 @@
+The following Python function has a bug. Find it, fix it, and explain it briefly.
+
+```python
+def moving_avg(readings, window=5):
+    out = []
+    for i in range(len(readings)):
+        chunk = readings[i:i+window]
+        out.append(sum(chunk) / window)
+    return out
+```
+
+Output format:
+1. One sentence stating the bug.
+2. Fixed function in a python code block.
+3. One sentence explaining why the fix is correct.
+
+No other text.

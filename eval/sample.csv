@@ -1,0 +1,11 @@
+timestamp,node_id,sensor,value
+2026-05-03T10:00:00Z,one61,soil_moisture,0.42
+2026-05-03T10:00:00Z,one62,soil_moisture,0.38
+2026-05-03T10:01:00Z,one61,soil_moisture,0.43
+2026-05-03T10:01:00Z,one62,soil_moisture,broken
+2026-05-03T10:02:00Z,one61,temperature,21.5
+2026-05-03T10:02:00Z,one62,soil_moisture,0.39
+2026-05-03T10:03:00Z,one61,soil_moisture,0.44
+2026-05-03T10:03:00Z,one62,soil_moisture,0.40
+2026-05-03T10:04:00Z,one61,soil_moisture,0.45
+2026-05-03T10:04:00Z,one62,soil_moisture,0.41

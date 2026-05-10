@@ -1,0 +1,12 @@
+Write a Python module that combines two functions:
+
+1. `parse_sensor_csv(path: str) -> list[dict]` — reads a CSV with columns `timestamp,node_id,sensor,value`, skips rows where `value` is not a float, returns list of dicts.
+
+2. `summarize(path: str, window: int) -> dict[tuple[str, str], list[float]]` — calls `parse_sensor_csv`, groups readings by `(node_id, sensor)`, computes a trailing moving average with the given `window` over the `value` field per group, and returns a dict keyed by `(node_id, sensor)` -> list of moving-average floats. Handle empty groups by returning an empty list for that key. The trailing moving average at index `i` should average over `readings[max(0, i - window + 1) : i + 1]`.
+
+Also write a pytest test file `test_summary.py` with at least three tests:
+- one for `parse_sensor_csv` correctly skipping a non-float row,
+- one for `summarize` returning the right keys,
+- one for `summarize` handling a single-element group.
+
+Output format: two python code blocks, first the module, then the test file. Each block must start with a comment line giving the filename, e.g. `# summary.py`. No prose outside the code blocks.
