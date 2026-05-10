@@ -1,10 +1,10 @@
 # hybrid-ai-k3s
 
-> **DEPRECATED 2026-05-11.** Local Ollama routing was scrapped from active workflow after real-world tests (3 PowerShell + 1 bash task) showed 0/2 success without cloud audit. Net cost (LAI prompts + WoL wake + cloud rewrite) exceeded pure cloud start-to-finish. Privacy use cases didn'''t materialize for homelab.
+> **DEPRECATED 2026-05-11.** Local Ollama routing was scrapped from active workflow after real-world tests (3 PowerShell attempts + 1 bash task) showed 0/2 task success without cloud audit. Net cost (LAI prompts + WoL wake + cloud rewrite) exceeded pure cloud start-to-finish. Privacy use cases didn't materialize for homelab work.
 >
-> Default routing now: cloud Opus 4.7 + Sonnet 4.6 sub-agents (Anthropic Agent tool —  /  / ).
+> Default routing now: cloud Opus 4.7 + Sonnet 4.6 sub-agents (Anthropic Agent tool — `subagent_type=Explore` for read-only / `general-purpose` for write / `Plan` for design).
 >
-> Repo kept as historical reference. To revive local AI: see  and the laptop-side  (run on .50 first), then opt in explicitly per-prompt.
+> Repo kept as historical reference. To revive local AI: see `eval/README.md` and the laptop-side `~/bin/ollama-tune-vram-cap.ps1` (run on .50 first), then opt in explicitly per-prompt.
 
 ---
 
